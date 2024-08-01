@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        td, th {
+            padding: 5px;
+            border: 1px solid;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+<h1>User List</h1>
+<br>
+<div>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th style="width: 169px">First Name</th>
+            <th style="width: 169px">Last Name</th>
+            <th style="width: 44px">Age</th>
+            <th colspan="2">Action</th>
+        </tr>
+        <tr th:each="user : ${userlist}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.firstname}"></td>
+            <td th:text="${user.lastname}"></td>
+            <td th:text="${user.age}"></td>
+            <td>
+                <form th:action="@{/delete}" method="get">
+                    <button type="submit" th:value="${user.id}" th:name="id"><b>Delete</b></button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/edit}" method="get">
+                    <button type="submit" th:value="${user.id}" th:name="id"><b>Edit</b></button>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <form th:action="@{/add}" method="get">
+        <table>
+            <tr>
+                <td colspan="5" style="border: none; padding-top: 20px">
+                    <b>Add User:</b>
+                </td>
+            </tr>
+            <tr>
+                <td><label> Firstname
+                    <input th:name="firstname">
+                </label></td>
+                <td><label> Lastname
+                    <input th:name="lastname">
+                </label></td>
+                <td><label>Age
+                    <input type="number" th:name="age" style="width: 45px">
+                </label></td>
+                <td>
+                    <button type="submit"><b>Add</b></button>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <form th:action="@{/clear}" method="get">
+        <button type="submit">Clear table</button>
+    </form>
+</div>
+</body>
+</html>

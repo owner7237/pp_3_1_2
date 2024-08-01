@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Edit</title>
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        div * {
+            padding: 3px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+<h1>User Edit</h1>
+<a onclick="history.back()">Back</a>
+<br>
+<div style="margin-top: 10px">
+    <form th:action="@{/edit/submit}" method="get">
+        <span>ID&emsp; &emsp;</span>
+        <span th:text="${user.id}"></span>
+        <br>
+        <input type="hidden" th:name="id" th:value="${user.id}">
+        <label> Firstname
+            <input th:name="firstname" th:value="${user.firstname}">
+        </label>
+        <br>
+        <label> Lastname
+            <input th:name="lastname" th:value="${user.lastname}">
+        </label>
+        <br>
+        <label>Age&emsp; &emsp;
+            <input type="number" th:name="age" th:value="${user.age}" style="width: 45px">
+        </label>
+        <br>
+        <button type="submit"><b>Confirm</b></button>
+    </form>
+</div>
+</body>
+</html>
